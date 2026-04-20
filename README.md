@@ -111,7 +111,7 @@
 
 <p style="font-size: 20px;">Произведём профилирование программы с помощью Callgrind.</p>
 
-![alt text](image-4.png)
+![alt text]((images/image-4.png)
 
 <p style="font-size: 20px;">Видим, что самая тяжелой является хеш-функция Crc32. Для её оптимизации используем интринсик _mm_crc32_u32. </p>
 
@@ -169,7 +169,7 @@ unsigned int Crc32 (const char * word)
 
 <p style="font-size: 20px;">Проведём повторное профилирование:</p>
 
-![alt text](image-6.png)
+![alt text]((images/image-6.png)
 
 <p style="font-size: 20px;">Теперь самая тяжелая функция - strcmp. Заметим, что все слова влезают в 256 бит, значит, они влезают в переменную типа `__m256i`. Поэтому можем использовать интринсик _mm256_cmpeq_epi8 для сравнения строк.</p>
 
@@ -200,7 +200,7 @@ int MyStrcmp (const char * string1, const char * string2)
   </tr>
 </table>
 
-![alt text](image-3.png)
+![alt text]((images/image-3.png)
 
 <p style="font-size: 20px;">Проведём профилирование ещё раз. Видим, что вес наиболее тяжёлой неоптимизированной функции - 0.34%. Дальнейшие оптимизации не дадут достаточного эффекта, но в учебных целях попробуем ещё два вида оптимизаций.</p>
 
